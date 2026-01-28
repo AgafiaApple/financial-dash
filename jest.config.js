@@ -5,6 +5,8 @@
 
 /** @type {import('jest').Config} */
 const config = {
+
+  
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -198,3 +200,16 @@ const config = {
 };
 
 module.exports = config;
+
+/* All of the below ensures that Jest works with Next.js */
+const nextJest = require('next/jest')
+ 
+/** @type {import('jest').Config} */
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+})
+ 
+ 
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(config)
