@@ -1,3 +1,4 @@
+
 {
   "compilerOptions": {
     "target": "ES2017",
@@ -17,6 +18,7 @@
       {
         "name": "next"
       }
+    // TODO: May have to configure Jest to work with Module Path Aliases
     ],
     "paths": {
       "@/*": ["./src/*"]
