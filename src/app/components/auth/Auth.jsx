@@ -8,6 +8,10 @@ const Auth = () => {
             <TabsTrigger value="login">Login</TabsTrigger>
             <TabsTrigger value="signup">Signup</TabsTrigger>
         </TabsList>
+        <TabsContent value="login">
+            <Login />
+        </TabsContent>
+        <TabsContent value="signup"><Signup /></TabsContent>
     </Tabs>
 
 }
