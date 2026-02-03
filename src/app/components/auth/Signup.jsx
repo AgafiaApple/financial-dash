@@ -63,7 +63,16 @@ const Signup = () => {
         console.log(data); 
         console.log(error); 
 
+        if (data) {
+            toast.success("Success. Confirm your email address and then login."); 
+        }
+
+        if (error) {
+            toast.error("An error occurred. Please try again.");
+        }
+
     }
+    // return the html
     return (
         <Card>
             <CardHeader>
