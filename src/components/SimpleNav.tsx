@@ -12,7 +12,8 @@ export default function SimpleNav() {
         <div className="flex justify-between h-16">
           <div className="flex items-center space-x-8">
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-semibold text-gray-900">LIFE Financial Dashboard</h1>
+              <h1 className="text-xl font-bold text-gray-900">LIFE</h1>
+              <h2 className="text-sm text-gray-500">Financial Dashboard</h2>
             </div>
             
             {/* Navigation Links */}
