@@ -8,7 +8,8 @@ import { useRouter } from 'next/navigation'
 
 type Client = {
   id: string | number
-  client_name?: string
+  first_name?: string
+  last_name?: string
   email?: string
   status?: string
   name?: string
@@ -33,8 +34,9 @@ export default function ClientList({ clients = [] }: ClientListProps) {
 
   const filteredClients = clients.filter((client) => {
     const searchLower = search.toLowerCase()
+    const fullName = `${client.first_name || ''} ${client.last_name || ''}`.toLowerCase()
     return (
-      client.client_name?.toLowerCase().includes(searchLower) ||
+      fullName.includes(searchLower) ||
       client.email?.toLowerCase().includes(searchLower)
     )
   })
@@ -221,9 +223,9 @@ export default function ClientList({ clients = [] }: ClientListProps) {
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-bold text-sm">
-                      {client.client_name?.charAt(0) || '?'}
+                      {(client.first_name?.charAt(0) || client.last_name?.charAt(0)) || '?'}
                     </div>
-                    {client.client_name || 'Unnamed Client'}
+                    {(client.first_name || client.last_name) ? `${client.first_name || ''} ${client.last_name || ''}`.trim() : 'Unnamed Client'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-1">

@@ -1,2 +1,2 @@
-export const CLIENT_TABLE_NAME="Fake_Clients"
-export const CLIENT_NAME_COL="client_name"
+export const CLIENT_TABLE_NAME="clients"
+export const CLIENT_NAME_COL="first_name"
