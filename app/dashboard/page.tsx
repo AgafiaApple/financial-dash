@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { redirect } from 'next/navigation'
 import { Users, TrendingUp, DollarSign, PiggyBank, CreditCard, Target } from 'lucide-react'
 import Link from 'next/link'
+import { AdminMetricsService } from '@/app/dashboard/admin/AdminMetricsService'
+
 
 
 async function getDashboardStats() {
@@ -62,6 +64,9 @@ async function getDashboardStats() {
 
 export default async function DashboardPage() {
   const supabase = await createClient()
+  const adminMetricsService = new AdminMetricsService(supabase)
+
+  const financial_bro_metrics = await adminMetricsService.getTimeSeriesMetrics()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
@@ -140,7 +145,8 @@ export default async function DashboardPage() {
       </div>
 
       {/* Charts */}
-      <DashboardCharts />
+      <DashboardCharts metrics={financial_bro_metrics} />
+      
 
       {/* Quick Actions */}
       <Card className="mb-8">

@@ -3,6 +3,24 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { AreaChart, BarChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
+type DailyMetrics = {
+  date: string
+  avgIncome: number
+  avgNetWorth: number
+  avgCreditScore: number
+}
+
+type DashboardChartsProps = {
+  metrics: DailyMetrics[]
+}
+
+
+// This is a placeholder for the actual data fetching logic, which should return an array of objects with date, avgIncome, avgNetWorth, and avgCreditScore properties.
+
+
+export default function DashboardCharts( { metrics }: DashboardChartsProps) {
+  // Transform the metrics data into the format needed for each chart
+
 const creditScoreData = [
   { month: 'Jan', score: 580 },
   { month: 'Feb', score: 595 },
@@ -14,6 +32,13 @@ const creditScoreData = [
   { month: 'Aug', score: 655 },
 ]
 
+ /*
+const creditScoreData = metrics.map(m => ({
+  label: m.date,
+  score: m.avgCreditScore,
+}))
+*/
+/*
 const incomeData = [
   { month: 'Jan', income: 2200 },
   { month: 'Feb', income: 2400 },
@@ -24,7 +49,14 @@ const incomeData = [
   { month: 'Jul', income: 3100 },
   { month: 'Aug', income: 3250 },
 ]
+*/
 
+const incomeData = metrics.map(m => ({
+  label: m.date,
+  income: m.avgIncome,
+}))
+
+/*
 const netWorthData = [
   { month: 'Jan', worth: 5000 },
   { month: 'Feb', worth: 5400 },
@@ -35,6 +67,12 @@ const netWorthData = [
   { month: 'Jul', worth: 7800 },
   { month: 'Aug', worth: 8500 },
 ]
+*/
+const netWorthData = metrics.map(m => ({
+  label: m.date,
+  worth: m.avgNetWorth,
+}))
+
 
 const distributionData = [
   { range: '300-499', clients: 3 },
@@ -45,7 +83,6 @@ const distributionData = [
   { range: '750+', clients: 6 },
 ]
 
-export default function DashboardCharts() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
 
@@ -90,7 +127,7 @@ export default function DashboardCharts() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="month" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} />
               <Tooltip formatter={(v) => [`$${Number(v).toLocaleString()}`, 'Net Income']} />
               <Area type="monotone" dataKey="income" stroke="#22c55e" strokeWidth={2} fill="url(#colorIncome)" />
@@ -115,7 +152,7 @@ export default function DashboardCharts() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="month" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} />
               <Tooltip formatter={(v) => [`$${Number(v).toLocaleString()}`, 'Net Worth']} />
               <Area type="monotone" dataKey="worth" stroke="#10b981" strokeWidth={2} fill="url(#colorWorth)" />

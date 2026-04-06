@@ -113,7 +113,8 @@ export default function ClientList({ clients = [] }: ClientListProps) {
       {showModal && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 relative">
-            <button onClick={closeModal} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+            <button
+             onClick={() => closeModal()} aria-label='Close modal' className="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
               <X className="w-5 h-5" />
             </button>
 
@@ -181,8 +182,9 @@ export default function ClientList({ clients = [] }: ClientListProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Status</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="status">Status</label>
                 <select
+                  id="status"
                   value={status}
                   onChange={e => setStatus(e.target.value)}
                   className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white text-slate-900"
